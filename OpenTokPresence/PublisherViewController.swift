@@ -51,8 +51,13 @@ extension PublisherViewController: OTPublisherDelegate, OTPublisherKitAudioLevel
     }
 
     func publisher(publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
-        if let publisher = self.publisher {
-            self.view.addSubview(publisher.view)
+        if let publisher = self.publisher, let publisherView = publisher.view {
+            publisherView.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(publisherView)
+            publisherView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
+            publisherView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
+            publisherView.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
+            publisherView.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
         }
     }
 

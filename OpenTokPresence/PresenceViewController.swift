@@ -18,7 +18,6 @@ class PresenceViewController: UITableViewController {
     }
     
     var session: OTSession?
-    var apiKey: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +40,6 @@ extension PresenceViewController {
         }
         presence.fetchPresence { response in
             if let sessionResponse = response.value {
-                self.apiKey = sessionResponse.apiKey
                 self.session = OTSession(apiKey: sessionResponse.apiKey, sessionId: sessionResponse.sessionId, delegate: self)
                 self.presence.registerUser(UIDevice.currentDevice().name) { response in
                     if let token = response.value, let session = self.session {
@@ -118,14 +116,18 @@ extension PresenceViewController {
         case .Empty(_):
             break
         case let .User(remoteUser):
-            if let session = session, let apiKey = apiKey {
+            if let session = session {
                 presence.initiateChat(remoteUser) { result in
-                    let invitation = Message.Invitation(identifier: remoteUser.identifier, sessionId: session.sessionId, apiKey: apiKey)
-                    let (type, message) = invitation.toSignal()
-                    var error: OTError? = nil
-                    session.signalWithType(type, string: message, connection: nil, error: &error)
-                    self.handleError(error)
-                    self.presentSession(result)
+                    if let response = result.value {
+                        let invitation = Message.Invitation(identifier: remoteUser.identifier, sessionId: response.sessionId, apiKey: response.apiKey)
+                        let (type, message) = invitation.toSignal()
+                        var error: OTError? = nil
+                        session.signalWithType(type, string: message, connection: nil, error: &error)
+                        self.presentSession(result)
+                    }
+                    else {
+                        self.handleError(result.error!)
+                    }
                 }
             }
         case .Invite(let remoteUser):

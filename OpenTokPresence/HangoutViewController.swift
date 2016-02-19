@@ -11,7 +11,7 @@ import UIKit
 class HangoutViewController: UIViewController {
     var focusedViewController: UIViewController?
 
-    var multipleOverlayView = HangoutView()
+    var hangoutView = HangoutView()
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -30,42 +30,44 @@ class HangoutViewController: UIViewController {
             removed.forEach { $0.willMoveToParentViewController(nil) }
 
             if isViewLoaded() {
-                updateOverlayViews()
+                updateHangoutViews()
             }
-
 
             added.forEach { $0.didMoveToParentViewController(self) }
             removed.forEach { $0.removeFromParentViewController() }
         }
     }
 
-    private func updateOverlayViews() {
-        multipleOverlayView.overlayViews = participantViewControllers.map {
+    private func updateHangoutViews() {
+        hangoutView.overlayViews = participantViewControllers.map {
             $0.view.translatesAutoresizingMaskIntoConstraints = false
             return $0.view
         }
-        multipleOverlayView.layoutIfNeeded()
+        hangoutView.layoutIfNeeded()
     }
 
     override func loadView() {
-        view = multipleOverlayView
-        multipleOverlayView.translatesAutoresizingMaskIntoConstraints = false
-        updateOverlayViews()
+        view = hangoutView
+        hangoutView.translatesAutoresizingMaskIntoConstraints = false
+        updateHangoutViews()
+        view.userInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapView:"))
     }
 
     func didTapView(tgr: UITapGestureRecognizer) {
         let location = tgr.locationInView(self.view)
-        if let view = self.view.hitTest(location, withEvent: nil),
-            let index = multipleOverlayView.overlayViews.indexOf(view)
-            where index != 0 {
-                let vc = participantViewControllers[index]
-                var viewControllers = participantViewControllers
-                viewControllers.removeAtIndex(index)
-                viewControllers.insert(vc, atIndex: 0)
-                UIView.animateWithDuration(0.2) {
-                    self.participantViewControllers = viewControllers
-                }
+        var view = self.view.hitTest(location, withEvent: nil)
+        while view != nil && hangoutView.overlayViews.contains(view!) == false {
+            view = view?.superview
+        }
+        if let view = view, let index = hangoutView.overlayViews.indexOf(view) {
+            let vc = participantViewControllers[index]
+            var viewControllers = participantViewControllers
+            viewControllers.removeAtIndex(index)
+            viewControllers.insert(vc, atIndex: 0)
+            UIView.animateWithDuration(0.2) {
+                self.participantViewControllers = viewControllers
+            }
         }
     }
 

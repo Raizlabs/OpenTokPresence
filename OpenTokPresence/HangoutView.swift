@@ -12,7 +12,7 @@ class HangoutView: UIView {
     
     struct Constants {
         static let padding = CGFloat(10)
-        static let height = CGFloat(100)
+        static let ViewPortSize = CGFloat(100)
     }
 
     var overlayViews: [UIView] = [] {
@@ -57,7 +57,8 @@ class HangoutView: UIView {
         var previousAnchor = self.rightAnchor
         for view in overlayViews[1..<overlayViews.count] {
             overlayConstraints.appendContentsOf([
-                view.heightAnchor.constraintEqualToConstant(Constants.height),
+                view.heightAnchor.constraintEqualToConstant(Constants.ViewPortSize),
+                view.widthAnchor.constraintEqualToConstant(Constants.ViewPortSize),
                 self.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: Constants.padding),
                 previousAnchor.constraintEqualToAnchor(view.rightAnchor, constant: Constants.padding),
                 ])

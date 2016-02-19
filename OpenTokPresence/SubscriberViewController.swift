@@ -29,6 +29,7 @@ class SubscriberViewController: UIViewController {
     func subscribe(stream: OTStream) {
         self.stream = stream
         subscriber = OTSubscriber(stream: stream, delegate: self)
+        subscriber?.viewScaleBehavior = .Fit
         session.subscribe(subscriber, error: &error)
     }
 
@@ -45,6 +46,14 @@ extension SubscriberViewController: OTSubscriberDelegate, OTSubscriberKitAudioLe
     }
 
     func subscriberDidConnectToStream(subscriberKit: OTSubscriberKit) {
+        if let subscriber = subscriber, let subscriberView = subscriber.view {
+            subscriberView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(subscriberView)
+            subscriberView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
+            subscriberView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
+            subscriberView.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
+            subscriberView.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
+        }
     }
 
     func subscriberVideoEnabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {

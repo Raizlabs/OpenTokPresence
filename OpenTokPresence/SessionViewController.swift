@@ -24,8 +24,12 @@ class SessionViewController: UIViewController {
             let currentVC = currentViewController
 
             addChildViewController(newVC)
-            newVC.view.frame = view.bounds
             view.addSubview(newVC.view)
+            newVC.view.translatesAutoresizingMaskIntoConstraints = false
+            newVC.view.topAnchor.constraintEqualToAnchor(self.topLayoutGuide.bottomAnchor).active = true
+            newVC.view.bottomAnchor.constraintEqualToAnchor(self.bottomLayoutGuide.topAnchor).active = true
+            newVC.view.rightAnchor.constraintEqualToAnchor(self.view.rightAnchor).active = true
+            newVC.view.leftAnchor.constraintEqualToAnchor(self.view.leftAnchor).active = true
 
             currentVC?.willMoveToParentViewController(nil)
 
@@ -83,7 +87,8 @@ extension SessionViewController {
             fatalError("Can not add participant without a stream")
         }
         let subscriberVC = SubscriberViewController(session: session)
-        hangoutViewController.participantViewControllers.append(subscriberVC)
+        hangoutViewController.participantViewControllers.insert(subscriberVC, atIndex: 0)
+        subscriberVC.subscribe(stream)
     }
 
     func removeParticipantForStream(stream: OTStream) {
