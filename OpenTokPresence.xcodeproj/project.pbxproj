@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB58A5C41C75419500C20C34 /* HangoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5C31C75419500C20C34 /* HangoutViewController.swift */; };
+		AB58A5C61C75513800C20C34 /* HangoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5C51C75513800C20C34 /* HangoutView.swift */; };
+		AB58A5CB1C76281200C20C34 /* PresenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5CA1C76281200C20C34 /* PresenceViewController.swift */; };
+		AB58A5CD1C76294000C20C34 /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5CC1C76294000C20C34 /* RemoteUser.swift */; };
+		AB58A5CF1C76489400C20C34 /* BuddyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5CE1C76489400C20C34 /* BuddyList.swift */; };
+		AB58A5D11C7648C800C20C34 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D01C7648C800C20C34 /* Message.swift */; };
+		AB58A5D31C7656EC00C20C34 /* PresenceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D21C7656EC00C20C34 /* PresenceRow.swift */; };
+		AB58A5D71C7660FE00C20C34 /* TableView+AutoDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D61C7660FE00C20C34 /* TableView+AutoDequeue.swift */; };
+		AB58A5D91C766B6500C20C34 /* PresenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D81C766B6500C20C34 /* PresenceService.swift */; };
+		AB58A5DB1C76C19B00C20C34 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5DA1C76C19B00C20C34 /* EmptyState.swift */; };
+		AB67B2351C73A511009BAEE6 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B2341C73A511009BAEE6 /* SessionViewController.swift */; };
+		AB67B23B1C73A6E6009BAEE6 /* PresenceKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */; };
+		AB67B23D1C73A74E009BAEE6 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B23C1C73A74E009BAEE6 /* APIConstants.swift */; };
+		AB67B23F1C73AC64009BAEE6 /* Manager+APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B23E1C73AC64009BAEE6 /* Manager+APIEndpoint.swift */; };
+		AB67B2431C73B3A1009BAEE6 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B2421C73B3A1009BAEE6 /* SessionState.swift */; };
+		AB67B2461C73B484009BAEE6 /* EmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B2451C73B484009BAEE6 /* EmptyStateViewController.swift */; };
+		ABEDDF351C6952900052F275 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEDDF341C6952900052F275 /* AppDelegate.swift */; };
+		ABEDDF3C1C6952900052F275 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABEDDF3B1C6952900052F275 /* Assets.xcassets */; };
+		ABEDDF3F1C6952900052F275 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEDDF3D1C6952900052F275 /* LaunchScreen.storyboard */; };
+		ABEDDF4D1C6961E30052F275 /* PublisherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEDDF4C1C6961E30052F275 /* PublisherViewController.swift */; };
+		ABEDDF541C6A20EA0052F275 /* SubscriberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEDDF531C6A20EA0052F275 /* SubscriberViewController.swift */; };
+		AC18A16A66155AA55F79949D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4470E8520568B86F75E534A /* Pods.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		569DC73E4B12BA0BA1F746E7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		698093A1149708362A55A311 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AB58A5C31C75419500C20C34 /* HangoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangoutViewController.swift; sourceTree = "<group>"; };
+		AB58A5C51C75513800C20C34 /* HangoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangoutView.swift; sourceTree = "<group>"; };
+		AB58A5CA1C76281200C20C34 /* PresenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceViewController.swift; sourceTree = "<group>"; };
+		AB58A5CC1C76294000C20C34 /* RemoteUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
+		AB58A5CE1C76489400C20C34 /* BuddyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyList.swift; sourceTree = "<group>"; };
+		AB58A5D01C7648C800C20C34 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		AB58A5D21C7656EC00C20C34 /* PresenceRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceRow.swift; sourceTree = "<group>"; };
+		AB58A5D61C7660FE00C20C34 /* TableView+AutoDequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableView+AutoDequeue.swift"; sourceTree = "<group>"; };
+		AB58A5D81C766B6500C20C34 /* PresenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceService.swift; sourceTree = "<group>"; };
+		AB58A5DA1C76C19B00C20C34 /* EmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
+		AB67B2341C73A511009BAEE6 /* SessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
+		AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceKit.swift; sourceTree = "<group>"; };
+		AB67B23C1C73A74E009BAEE6 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		AB67B23E1C73AC64009BAEE6 /* Manager+APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Manager+APIEndpoint.swift"; sourceTree = "<group>"; };
+		AB67B2421C73B3A1009BAEE6 /* SessionState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
+		AB67B2451C73B484009BAEE6 /* EmptyStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateViewController.swift; sourceTree = "<group>"; };
+		ABEDDF311C6952900052F275 /* OpenTokPresence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenTokPresence.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABEDDF341C6952900052F275 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ABEDDF3B1C6952900052F275 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ABEDDF3E1C6952900052F275 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ABEDDF401C6952900052F275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABEDDF461C6952DF0052F275 /* OpenTokPresence-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenTokPresence-Bridging-Header.h"; sourceTree = "<group>"; };
+		ABEDDF4C1C6961E30052F275 /* PublisherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublisherViewController.swift; sourceTree = "<group>"; };
+		ABEDDF531C6A20EA0052F275 /* SubscriberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberViewController.swift; sourceTree = "<group>"; };
+		F4470E8520568B86F75E534A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ABEDDF2E1C6952900052F275 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC18A16A66155AA55F79949D /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02BF5D42AF4C589A155F1E70 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				569DC73E4B12BA0BA1F746E7 /* Pods.debug.xcconfig */,
+				698093A1149708362A55A311 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A2B737F66F886B0EB7C0EE63 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4470E8520568B86F75E534A /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB58A5C91C76274500C20C34 /* Presence */ = {
+			isa = PBXGroup;
+			children = (
+				AB58A5D01C7648C800C20C34 /* Message.swift */,
+				AB58A5CE1C76489400C20C34 /* BuddyList.swift */,
+				AB58A5CC1C76294000C20C34 /* RemoteUser.swift */,
+				AB58A5D21C7656EC00C20C34 /* PresenceRow.swift */,
+				AB58A5CA1C76281200C20C34 /* PresenceViewController.swift */,
+			);
+			name = Presence;
+			sourceTree = "<group>";
+		};
+		AB67B2381C73A653009BAEE6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AB67B2391C73A6CB009BAEE6 /* API */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		AB67B2391C73A6CB009BAEE6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */,
+				AB67B23C1C73A74E009BAEE6 /* APIConstants.swift */,
+				AB67B23E1C73AC64009BAEE6 /* Manager+APIEndpoint.swift */,
+				AB58A5D81C766B6500C20C34 /* PresenceService.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		AB67B2401C73B385009BAEE6 /* OpenTok */ = {
+			isa = PBXGroup;
+			children = (
+				AB67B2421C73B3A1009BAEE6 /* SessionState.swift */,
+				AB67B2341C73A511009BAEE6 /* SessionViewController.swift */,
+				ABEDDF531C6A20EA0052F275 /* SubscriberViewController.swift */,
+				ABEDDF4C1C6961E30052F275 /* PublisherViewController.swift */,
+			);
+			name = OpenTok;
+			sourceTree = "<group>";
+		};
+		AB67B2411C73B393009BAEE6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AB58A5C91C76274500C20C34 /* Presence */,
+				AB67B2441C73B45C009BAEE6 /* Common */,
+				AB67B2401C73B385009BAEE6 /* OpenTok */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		AB67B2441C73B45C009BAEE6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AB58A5DA1C76C19B00C20C34 /* EmptyState.swift */,
+				AB67B2451C73B484009BAEE6 /* EmptyStateViewController.swift */,
+				AB58A5C51C75513800C20C34 /* HangoutView.swift */,
+				AB58A5C31C75419500C20C34 /* HangoutViewController.swift */,
+				AB58A5D61C7660FE00C20C34 /* TableView+AutoDequeue.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		ABEDDF281C6952900052F275 = {
+			isa = PBXGroup;
+			children = (
+				ABEDDF331C6952900052F275 /* OpenTokPresence */,
+				ABEDDF321C6952900052F275 /* Products */,
+				02BF5D42AF4C589A155F1E70 /* Pods */,
+				A2B737F66F886B0EB7C0EE63 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		ABEDDF321C6952900052F275 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ABEDDF311C6952900052F275 /* OpenTokPresence.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ABEDDF331C6952900052F275 /* OpenTokPresence */ = {
+			isa = PBXGroup;
+			children = (
+				AB67B2411C73B393009BAEE6 /* UI */,
+				AB67B2381C73A653009BAEE6 /* Services */,
+				ABEDDF341C6952900052F275 /* AppDelegate.swift */,
+				ABEDDF3B1C6952900052F275 /* Assets.xcassets */,
+				ABEDDF3D1C6952900052F275 /* LaunchScreen.storyboard */,
+				ABEDDF401C6952900052F275 /* Info.plist */,
+				ABEDDF461C6952DF0052F275 /* OpenTokPresence-Bridging-Header.h */,
+			);
+			path = OpenTokPresence;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ABEDDF301C6952900052F275 /* OpenTokPresence */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABEDDF431C6952900052F275 /* Build configuration list for PBXNativeTarget "OpenTokPresence" */;
+			buildPhases = (
+				4FD6B9F5F564A13F8A6D5FCB /* Check Pods Manifest.lock */,
+				ABEDDF2D1C6952900052F275 /* Sources */,
+				ABEDDF2E1C6952900052F275 /* Frameworks */,
+				ABEDDF2F1C6952900052F275 /* Resources */,
+				6920CDE1D6DE2C6F25FF7471 /* Embed Pods Frameworks */,
+				09DBECBB5C13678EE5EF3C4F /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenTokPresence;
+			productName = OpenTokPresence;
+			productReference = ABEDDF311C6952900052F275 /* OpenTokPresence.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ABEDDF291C6952900052F275 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = Raizlabs;
+				TargetAttributes = {
+					ABEDDF301C6952900052F275 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = ABEDDF2C1C6952900052F275 /* Build configuration list for PBXProject "OpenTokPresence" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ABEDDF281C6952900052F275;
+			productRefGroup = ABEDDF321C6952900052F275 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ABEDDF301C6952900052F275 /* OpenTokPresence */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ABEDDF2F1C6952900052F275 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABEDDF3F1C6952900052F275 /* LaunchScreen.storyboard in Resources */,
+				ABEDDF3C1C6952900052F275 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09DBECBB5C13678EE5EF3C4F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FD6B9F5F564A13F8A6D5FCB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6920CDE1D6DE2C6F25FF7471 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ABEDDF2D1C6952900052F275 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB67B23B1C73A6E6009BAEE6 /* PresenceKit.swift in Sources */,
+				AB58A5D71C7660FE00C20C34 /* TableView+AutoDequeue.swift in Sources */,
+				AB67B2461C73B484009BAEE6 /* EmptyStateViewController.swift in Sources */,
+				ABEDDF4D1C6961E30052F275 /* PublisherViewController.swift in Sources */,
+				ABEDDF351C6952900052F275 /* AppDelegate.swift in Sources */,
+				AB67B2431C73B3A1009BAEE6 /* SessionState.swift in Sources */,
+				AB58A5CD1C76294000C20C34 /* RemoteUser.swift in Sources */,
+				AB58A5CF1C76489400C20C34 /* BuddyList.swift in Sources */,
+				AB67B23D1C73A74E009BAEE6 /* APIConstants.swift in Sources */,
+				AB67B23F1C73AC64009BAEE6 /* Manager+APIEndpoint.swift in Sources */,
+				AB58A5D31C7656EC00C20C34 /* PresenceRow.swift in Sources */,
+				AB58A5CB1C76281200C20C34 /* PresenceViewController.swift in Sources */,
+				AB58A5D91C766B6500C20C34 /* PresenceService.swift in Sources */,
+				AB67B2351C73A511009BAEE6 /* SessionViewController.swift in Sources */,
+				AB58A5DB1C76C19B00C20C34 /* EmptyState.swift in Sources */,
+				AB58A5C61C75513800C20C34 /* HangoutView.swift in Sources */,
+				AB58A5D11C7648C800C20C34 /* Message.swift in Sources */,
+				ABEDDF541C6A20EA0052F275 /* SubscriberViewController.swift in Sources */,
+				AB58A5C41C75419500C20C34 /* HangoutViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ABEDDF3D1C6952900052F275 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ABEDDF3E1C6952900052F275 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ABEDDF411C6952900052F275 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ABEDDF421C6952900052F275 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ABEDDF441C6952900052F275 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 569DC73E4B12BA0BA1F746E7 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = OpenTokPresence/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.open-tok-presence";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OpenTokPresence/OpenTokPresence-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ABEDDF451C6952900052F275 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 698093A1149708362A55A311 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = OpenTokPresence/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.open-tok-presence";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OpenTokPresence/OpenTokPresence-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ABEDDF2C1C6952900052F275 /* Build configuration list for PBXProject "OpenTokPresence" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABEDDF411C6952900052F275 /* Debug */,
+				ABEDDF421C6952900052F275 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABEDDF431C6952900052F275 /* Build configuration list for PBXNativeTarget "OpenTokPresence" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABEDDF441C6952900052F275 /* Debug */,
+				ABEDDF451C6952900052F275 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ABEDDF291C6952900052F275 /* Project object */;
+}
