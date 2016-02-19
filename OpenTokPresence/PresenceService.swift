@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 
+
 class PresenceService {
     let manager = Alamofire.Manager()
 }
@@ -26,15 +27,15 @@ struct Error {
     }
 }
 
-struct SessionResponse {
-    let apiKey: String
-    let sessionId: String
-}
-
 // MARK: - Presence
 
 extension PresenceService {
 
+    struct SessionResponse {
+        let apiKey: String
+        let sessionId: String
+    }
+    
     typealias SessionCompletion = (Alamofire.Result<SessionResponse, NSError>) -> Void
 
     func fetchPresence(completion: SessionCompletion) {

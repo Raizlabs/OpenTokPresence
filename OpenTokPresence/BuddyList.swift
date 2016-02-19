@@ -38,21 +38,21 @@ struct BuddyList {
     }
 
     mutating func updateStatus(identifier: String, status: RemoteUser.Status) {
-        let existingIndex = lookupByIdentifier(identifier)!
+        guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
         user.status = status
         users[existingIndex] = user
     }
 
     mutating func invite(identifier: String, invitationSessionId: String) {
-        let existingIndex = lookupByIdentifier(identifier)!
+        guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
         user.invitationSessionId = invitationSessionId
         users[existingIndex] = user
     }
 
     mutating func cancelInvite(identifier: String) {
-        let existingIndex = lookupByIdentifier(identifier)!
+        guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
         user.invitationSessionId = nil
         users[existingIndex] = user

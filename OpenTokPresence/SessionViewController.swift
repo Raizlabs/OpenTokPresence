@@ -106,11 +106,6 @@ extension SessionViewController {
 
 extension SessionViewController : OTSessionDelegate {
 
-    func isLocalStream(stream: OTStream) -> Bool{
-        guard let session = session else { return false }
-        return stream.connection == session.connection
-    }
-
     func sessionDidConnect(session: OTSession!) {
         self.sessionState = .Connected
         if let publisherViewController = publisherViewController {

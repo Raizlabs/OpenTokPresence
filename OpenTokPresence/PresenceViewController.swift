@@ -18,6 +18,7 @@ class PresenceViewController: UITableViewController {
     }
     
     var session: OTSession?
+    var apiKey: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ extension PresenceViewController {
         }
         presence.fetchPresence { response in
             if let sessionResponse = response.value {
+                self.apiKey = sessionResponse.apiKey
                 self.session = OTSession(apiKey: sessionResponse.apiKey, sessionId: sessionResponse.sessionId, delegate: self)
                 self.presence.registerUser(UIDevice.currentDevice().name) { response in
                     if let token = response.value, let session = self.session {
@@ -115,8 +117,17 @@ extension PresenceViewController {
         switch row {
         case .Empty(_):
             break
-        case .User(let remoteUser):
-            presence.initiateChat(remoteUser, completion: presentSession)
+        case let .User(remoteUser):
+            if let session = session, let apiKey = apiKey {
+                presence.initiateChat(remoteUser) { result in
+                    let invitation = Message.Invitation(identifier: remoteUser.identifier, sessionId: session.sessionId, apiKey: apiKey)
+                    let (type, message) = invitation.toSignal()
+                    var error: OTError? = nil
+                    session.signalWithType(type, string: message, connection: nil, error: &error)
+                    self.handleError(error)
+                    self.presentSession(result)
+                }
+            }
         case .Invite(let remoteUser):
             presence.joinChat(remoteUser, completion: presentSession)
         }
