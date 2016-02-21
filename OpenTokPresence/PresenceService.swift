@@ -118,7 +118,7 @@ extension PresenceService {
 
     func joinChat(user: RemoteUser, completion: ChatCompletion) {
         manager
-            .request(PresenceKit.JoinChat(sessionId: user.invitationSessionId!))
+            .request(PresenceKit.JoinChat(sessionId: user.invitationSessionInfo!.sessionId))
             .responseJSON() {response in
                 guard response.result.error == nil else {
                     completion(.Failure(response.result.error!))

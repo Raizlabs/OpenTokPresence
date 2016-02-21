@@ -11,6 +11,14 @@ import Alamofire
 
 class PresenceViewController: UITableViewController {
 
+    init() {
+        super.init(style: .Grouped)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     let presence = PresenceService()
 
     var buddyList = BuddyList(users:[]) {
@@ -120,7 +128,7 @@ extension PresenceViewController {
             presence.initiateChat(remoteUser) { response in
                 if let result = response.value {
                     self.sendMessage(Message.Invitation(identifier: remoteUser.identifier, sessionInfo: result.sessionInfo))
-                    self.buddyList.sentInvite(remoteUser.identifier, invitationSessionId: result.sessionInfo.sessionId, invitationToken: result.token)
+                    self.buddyList.sentInvite(remoteUser.identifier, invitationSessionInfo: result.sessionInfo, invitationToken: result.token)
                 }
                 else {
                     self.handleError(response.error!)
@@ -137,7 +145,13 @@ extension PresenceViewController {
                     self.handleError(response.error!)
                 }
             })
-        case .Invite(_, true):
+        case .Invite(let remoteUser, true):
+            guard let sessionInfo = remoteUser.invitationSessionInfo else {
+                fatalError("Can not cancel invite")
+            }
+            sendMessage(Message.CancelInvitation(identifier: remoteUser.identifier, sessionInfo: sessionInfo))
+
+            buddyList.clearInvite(remoteUser.identifier)
             break
         }
     }
@@ -170,16 +184,16 @@ extension PresenceViewController : OTSessionDelegate {
         case let .Status(identifier, status):
             buddyList.updateStatus(identifier, status: status)
         case let .Invitation(identifier, sessionInfo):
-            buddyList.receivedInvite(identifier, invitationSessionId: sessionInfo.sessionId)
+            buddyList.receivedInvite(identifier, invitationSessionInfo: sessionInfo)
         case let .CancelInvitation(identifier, _):
-            buddyList.cancelInvite(identifier)
+            buddyList.clearInvite(identifier)
         case let .AcceptInvitation(identifier, sessionInfo):
             guard let token = buddyList.tokenForInvitationSentTo(identifier) else {
                 fatalError("Invitation accepted without token")
             }
             self.presentSession(sessionInfo, token: token)
         case let .DeclineInvitation(identifier, _):
-            buddyList.cancelInvite(identifier)
+            buddyList.clearInvite(identifier)
         }
     }
 

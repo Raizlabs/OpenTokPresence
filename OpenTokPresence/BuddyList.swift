@@ -12,7 +12,7 @@ struct BuddyList {
     var users: [RemoteUser]
 
     var invitations: [RemoteUser] {
-        return users.filter() { $0.invitationSessionId != nil }
+        return users.filter() { $0.invitationSessionInfo != nil }
     }
 
     var hasInvitations: Bool { return invitations.count > 0 }
@@ -29,7 +29,7 @@ struct BuddyList {
     }
 
     mutating func connect(identifier: String, name: String) {
-        let user = RemoteUser(name: name, identifier: identifier, status: .Online, invitationSessionId: nil, invitationToken: nil)
+        let user = RemoteUser(name: name, identifier: identifier, status: .Online, invitationSessionInfo: nil, invitationToken: nil)
         if let existingIndex = lookupByIdentifier(identifier) {
             users[existingIndex] = user
         }
@@ -51,17 +51,17 @@ struct BuddyList {
         users[existingIndex] = user
     }
 
-    mutating func receivedInvite(identifier: String, invitationSessionId: String) {
+    mutating func receivedInvite(identifier: String, invitationSessionInfo: SessionInfo) {
         guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
-        user.invitationSessionId = invitationSessionId
+        user.invitationSessionInfo = invitationSessionInfo
         users[existingIndex] = user
     }
 
-    mutating func sentInvite(identifier: String, invitationSessionId: String, invitationToken: String) {
+    mutating func sentInvite(identifier: String, invitationSessionInfo: SessionInfo, invitationToken: String) {
         guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
-        user.invitationSessionId = invitationSessionId
+        user.invitationSessionInfo = invitationSessionInfo
         user.invitationToken = invitationToken
         users[existingIndex] = user
     }
@@ -69,16 +69,9 @@ struct BuddyList {
     mutating func clearInvite(identifier: String) {
         guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
-        user.invitationSessionId = nil
+        user.invitationSessionInfo = nil
         user.invitationToken = nil
         users[existingIndex] = user
     }
 
-    mutating func cancelInvite(identifier: String) {
-        guard let existingIndex = lookupByIdentifier(identifier) else { return }
-        var user = users[existingIndex]
-        user.invitationSessionId = nil
-        user.invitationToken = nil
-        users[existingIndex] = user
-    }
 }

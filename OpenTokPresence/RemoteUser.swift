@@ -21,6 +21,6 @@ struct RemoteUser {
     let name: String
     let identifier: String
     var status: Status
-    var invitationSessionId: String?
+    var invitationSessionInfo: SessionInfo?
     var invitationToken: String?
 }
