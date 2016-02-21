@@ -60,7 +60,7 @@ class HangoutViewController: UIViewController {
         while view != nil && hangoutView.overlayViews.contains(view!) == false {
             view = view?.superview
         }
-        if let view = view, let index = hangoutView.overlayViews.indexOf(view) {
+        if let view = view,  let index = hangoutView.overlayViews.indexOf(view) {
             let vc = participantViewControllers[index]
             var viewControllers = participantViewControllers
             viewControllers.removeAtIndex(index)

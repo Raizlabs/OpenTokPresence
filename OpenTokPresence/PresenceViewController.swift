@@ -59,15 +59,10 @@ extension PresenceViewController {
         }
     }
 
-    func presentSession(chatResult: Result<PresenceService.ChatResponse, NSError>) {
-        if let chatResponse = chatResult.value {
-            let sessionViewController = SessionViewController()
-            sessionViewController.setupSession(chatResponse.apiKey, sessionId: chatResponse.sessionId, token: chatResponse.token)
-            self.navigationController?.pushViewController(sessionViewController, animated: true)
-        }
-        else {
-            handleError(chatResult.error)
-        }
+    func presentSession(sessionInfo: SessionInfo, token: String) {
+        let sessionViewController = SessionViewController()
+        sessionViewController.setupSession(sessionInfo.apiKey, sessionId: sessionInfo.sessionId, token: token)
+        self.navigationController?.pushViewController(sessionViewController, animated: true)
     }
 
     func handleError(error: NSError?) {
@@ -116,22 +111,26 @@ extension PresenceViewController {
         case .Empty(_):
             break
         case let .User(remoteUser):
-            if let session = session {
-                presence.initiateChat(remoteUser) { result in
-                    if let response = result.value {
-                        let invitation = Message.Invitation(identifier: remoteUser.identifier, sessionId: response.sessionId, apiKey: response.apiKey)
-                        let (type, message) = invitation.toSignal()
-                        var error: OTError? = nil
-                        session.signalWithType(type, string: message, connection: nil, error: &error)
-                        self.presentSession(result)
-                    }
-                    else {
-                        self.handleError(result.error!)
-                    }
+            presence.initiateChat(remoteUser) { response in
+                if let result = response.value {
+                    self.buddyList.sentInvite(remoteUser.identifier, invitationSessionId: result.sessionInfo.sessionId, invitationToken: result.token)
+                    self.sendMessage(Message.Invitation(identifier: remoteUser.identifier, sessionInfo: result.sessionInfo))
+                }
+                else {
+                    self.handleError(response.error!)
                 }
             }
         case .Invite(let remoteUser):
-            presence.joinChat(remoteUser, completion: presentSession)
+            presence.joinChat(remoteUser, completion: { response in
+                if let result = response.value {
+                    self.buddyList.clearInvite(remoteUser.identifier)
+                    self.sendMessage(Message.AcceptInvitation(identifier: remoteUser.identifier, sessionInfo: result.sessionInfo))
+                    self.presentSession(result.sessionInfo, token: result.token)
+                }
+                else {
+                    self.handleError(response.error!)
+                }
+            })
         }
     }
 
@@ -139,31 +138,44 @@ extension PresenceViewController {
 
 extension PresenceViewController : OTSessionDelegate {
 
+    func sendMessage(message: Message) {
+        guard let session = session else {
+            return
+        }
+
+        let (type, body) = message.toSignal()
+        var error: OTError? = nil
+        session.signalWithType(type, string: body, connection: nil, error: &error)
+        handleError(error)
+    }
+
     func session(session: OTSession!, didFailWithError error: OTError!) {
         handleError(error)
     }
 
     func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection!, withString string: String!) {
-        guard let message = Message.fromSignal(type, withString:string, fromConnectionId:connection?.connectionId) else {
+
+        guard let message = Message.fromSignal(type, withString:string, fromConnectionId:connection?.connectionId) where connection != session.connection else {
             return
         }
         switch message {
         case let .Status(identifier, status):
             buddyList.updateStatus(identifier, status: status)
-        case let .Invitation(identifier, sessionId, _):
-            buddyList.invite(identifier, invitationSessionId: sessionId)
-            break;
-        case let .CancelInvitation(identifier, _, _):
+        case let .Invitation(identifier, sessionInfo):
+            buddyList.receivedInvite(identifier, invitationSessionId: sessionInfo.sessionId)
+        case let .CancelInvitation(identifier, _):
             buddyList.cancelInvite(identifier)
-            break
+        case let .AcceptInvitation(identifier, sessionInfo):
+            guard let token = buddyList.tokenForInvitationSentTo(identifier) else {
+                fatalError("Invitation accepted without token")
+            }
+            self.presentSession(sessionInfo, token: token)
         }
     }
 
     func session(session: OTSession!, connectionCreated connection: OTConnection!) {
         guard
-            let data = connection.data.dataUsingEncoding(NSUTF8StringEncoding),
-            let JSONObject = try? NSJSONSerialization.JSONObjectWithData(data, options: [.AllowFragments]),
-            let JSON = JSONObject as? Dictionary<String, String>,
+            let JSON: Dictionary<String, String> = connection.data.toJSON(),
             let name = JSON[APIConstants.SessionKeys.name] else
         {
             return

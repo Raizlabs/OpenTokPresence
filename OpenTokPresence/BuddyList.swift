@@ -17,12 +17,19 @@ struct BuddyList {
 
     var hasInvitations: Bool { return invitations.count > 0 }
 
-    func lookupByIdentifier(identifier: String) -> Int? {
+    private func lookupByIdentifier(identifier: String) -> Int? {
         return users.indexOf() { $0.identifier == identifier }
     }
 
+    func tokenForInvitationSentTo(identifier: String) -> String? {
+        guard let existingIndex = lookupByIdentifier(identifier) else {
+            return nil
+        }
+        return users[existingIndex].invitationToken
+    }
+
     mutating func connect(identifier: String, name: String) {
-        let user = RemoteUser(name: name, identifier: identifier, status: .Online, invitationSessionId: nil)
+        let user = RemoteUser(name: name, identifier: identifier, status: .Online, invitationSessionId: nil, invitationToken: nil)
         if let existingIndex = lookupByIdentifier(identifier) {
             users[existingIndex] = user
         }
@@ -44,10 +51,26 @@ struct BuddyList {
         users[existingIndex] = user
     }
 
-    mutating func invite(identifier: String, invitationSessionId: String) {
+    mutating func receivedInvite(identifier: String, invitationSessionId: String) {
         guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
         user.invitationSessionId = invitationSessionId
+        users[existingIndex] = user
+    }
+
+    mutating func sentInvite(identifier: String, invitationSessionId: String, invitationToken: String) {
+        guard let existingIndex = lookupByIdentifier(identifier) else { return }
+        var user = users[existingIndex]
+        user.invitationSessionId = invitationSessionId
+        user.invitationToken = invitationToken
+        users[existingIndex] = user
+    }
+
+    mutating func clearInvite(identifier: String) {
+        guard let existingIndex = lookupByIdentifier(identifier) else { return }
+        var user = users[existingIndex]
+        user.invitationSessionId = nil
+        user.invitationToken = nil
         users[existingIndex] = user
     }
 

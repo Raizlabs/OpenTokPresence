@@ -28,6 +28,8 @@
 		ABEDDF3F1C6952900052F275 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEDDF3D1C6952900052F275 /* LaunchScreen.storyboard */; };
 		ABEDDF4D1C6961E30052F275 /* PublisherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEDDF4C1C6961E30052F275 /* PublisherViewController.swift */; };
 		ABEDDF541C6A20EA0052F275 /* SubscriberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEDDF531C6A20EA0052F275 /* SubscriberViewController.swift */; };
+		ABF7E57E1C77D0700066E8EC /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E57D1C77D0700066E8EC /* JSONHelpers.swift */; };
+		ABF7E5821C79330B0066E8EC /* SessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E5811C79330B0066E8EC /* SessionInfo.swift */; };
 		AC18A16A66155AA55F79949D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4470E8520568B86F75E534A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		ABEDDF461C6952DF0052F275 /* OpenTokPresence-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenTokPresence-Bridging-Header.h"; sourceTree = "<group>"; };
 		ABEDDF4C1C6961E30052F275 /* PublisherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublisherViewController.swift; sourceTree = "<group>"; };
 		ABEDDF531C6A20EA0052F275 /* SubscriberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberViewController.swift; sourceTree = "<group>"; };
+		ABF7E57D1C77D0700066E8EC /* JSONHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelpers.swift; sourceTree = "<group>"; };
+		ABF7E5811C79330B0066E8EC /* SessionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionInfo.swift; sourceTree = "<group>"; };
 		F4470E8520568B86F75E534A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,7 +97,6 @@
 		AB58A5C91C76274500C20C34 /* Presence */ = {
 			isa = PBXGroup;
 			children = (
-				AB58A5D01C7648C800C20C34 /* Message.swift */,
 				AB58A5CE1C76489400C20C34 /* BuddyList.swift */,
 				AB58A5CC1C76294000C20C34 /* RemoteUser.swift */,
 				AB58A5D21C7656EC00C20C34 /* PresenceRow.swift */,
@@ -117,6 +120,8 @@
 				AB67B23C1C73A74E009BAEE6 /* APIConstants.swift */,
 				AB67B23E1C73AC64009BAEE6 /* Manager+APIEndpoint.swift */,
 				AB58A5D81C766B6500C20C34 /* PresenceService.swift */,
+				ABF7E5811C79330B0066E8EC /* SessionInfo.swift */,
+				AB58A5D01C7648C800C20C34 /* Message.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 		ABEDDF331C6952900052F275 /* OpenTokPresence */ = {
 			isa = PBXGroup;
 			children = (
+				ABF7E57C1C77D05A0066E8EC /* Utility */,
 				AB67B2411C73B393009BAEE6 /* UI */,
 				AB67B2381C73A653009BAEE6 /* Services */,
 				ABEDDF341C6952900052F275 /* AppDelegate.swift */,
@@ -184,6 +190,14 @@
 				ABEDDF461C6952DF0052F275 /* OpenTokPresence-Bridging-Header.h */,
 			);
 			path = OpenTokPresence;
+			sourceTree = "<group>";
+		};
+		ABF7E57C1C77D05A0066E8EC /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				ABF7E57D1C77D0700066E8EC /* JSONHelpers.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +330,8 @@
 				AB58A5CD1C76294000C20C34 /* RemoteUser.swift in Sources */,
 				AB58A5CF1C76489400C20C34 /* BuddyList.swift in Sources */,
 				AB67B23D1C73A74E009BAEE6 /* APIConstants.swift in Sources */,
+				ABF7E5821C79330B0066E8EC /* SessionInfo.swift in Sources */,
+				ABF7E57E1C77D0700066E8EC /* JSONHelpers.swift in Sources */,
 				AB67B23F1C73AC64009BAEE6 /* Manager+APIEndpoint.swift in Sources */,
 				AB58A5D31C7656EC00C20C34 /* PresenceRow.swift in Sources */,
 				AB58A5CB1C76281200C20C34 /* PresenceViewController.swift in Sources */,

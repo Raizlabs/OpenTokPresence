@@ -31,12 +31,7 @@ struct Error {
 
 extension PresenceService {
 
-    struct SessionResponse {
-        let apiKey: String
-        let sessionId: String
-    }
-    
-    typealias SessionCompletion = (Alamofire.Result<SessionResponse, NSError>) -> Void
+    typealias SessionCompletion = (Alamofire.Result<SessionInfo, NSError>) -> Void
 
     func fetchPresence(completion: SessionCompletion) {
         manager
@@ -55,7 +50,7 @@ extension PresenceService {
                     completion(.Failure(Error.errorWithCode(.InvalidResponseContent)))
                     return
                 }
-                completion(.Success(SessionResponse(apiKey: apiKey, sessionId: sessionId)))
+                completion(.Success(SessionInfo(sessionId: sessionId, apiKey: apiKey)))
         }
     }
 }
@@ -93,9 +88,8 @@ extension PresenceService {
 extension PresenceService {
 
     struct ChatResponse {
-        let apiKey: String
-        let sessionId: String
         let token: String
+        let sessionInfo: SessionInfo
     }
 
     typealias ChatCompletion = (Alamofire.Result<ChatResponse, NSError>) -> Void
@@ -118,7 +112,7 @@ extension PresenceService {
                     completion(.Failure(Error.errorWithCode(.InvalidResponseContent)))
                     return
                 }
-                completion(.Success(ChatResponse(apiKey: apiKey, sessionId: sessionId, token: token)))
+                completion(.Success(ChatResponse(token: token, sessionInfo: SessionInfo(sessionId: sessionId, apiKey: apiKey))))
         }
     }
 
@@ -140,7 +134,7 @@ extension PresenceService {
                     completion(.Failure(Error.errorWithCode(.InvalidResponseContent)))
                     return
                 }
-                completion(.Success(ChatResponse(apiKey: apiKey, sessionId: sessionId, token: token)))
+                completion(.Success(ChatResponse(token: token, sessionInfo: SessionInfo(sessionId: sessionId, apiKey: apiKey))))
         }
     }
 
