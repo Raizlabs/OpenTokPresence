@@ -98,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				AB58A5CE1C76489400C20C34 /* BuddyList.swift */,
-				AB58A5CC1C76294000C20C34 /* RemoteUser.swift */,
 				AB58A5D21C7656EC00C20C34 /* PresenceRow.swift */,
 				AB58A5CA1C76281200C20C34 /* PresenceViewController.swift */,
 			);
@@ -116,6 +115,7 @@
 		AB67B2391C73A6CB009BAEE6 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				AB58A5CC1C76294000C20C34 /* RemoteUser.swift */,
 				AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */,
 				AB67B23C1C73A74E009BAEE6 /* APIConstants.swift */,
 				AB67B23E1C73AC64009BAEE6 /* Manager+APIEndpoint.swift */,

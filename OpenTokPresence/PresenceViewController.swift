@@ -98,9 +98,11 @@ extension PresenceViewController {
             cell.textLabel?.text = remoteUser.name
             cell.detailTextLabel?.text = remoteUser.status.displayStatus
             return cell
-        case .Invite(let remoteUser):
+        case .Invite(let remoteUser, let initiated):
             let cell: InviteTableViewCell = tableView.cellForIndexPath(indexPath)
-            cell.textLabel?.text = "Invitation from \(remoteUser.name)"
+            cell.textLabel?.text = (initiated ?
+                "Waiting for \(remoteUser.name)" :
+                "Invitation from \(remoteUser.name)")
             return cell
         }
     }
@@ -111,26 +113,32 @@ extension PresenceViewController {
         case .Empty(_):
             break
         case let .User(remoteUser):
+            guard remoteUser.status == .Online else {
+                // User is not available (in another chat)
+                return
+            }
             presence.initiateChat(remoteUser) { response in
                 if let result = response.value {
-                    self.buddyList.sentInvite(remoteUser.identifier, invitationSessionId: result.sessionInfo.sessionId, invitationToken: result.token)
                     self.sendMessage(Message.Invitation(identifier: remoteUser.identifier, sessionInfo: result.sessionInfo))
+                    self.buddyList.sentInvite(remoteUser.identifier, invitationSessionId: result.sessionInfo.sessionId, invitationToken: result.token)
                 }
                 else {
                     self.handleError(response.error!)
                 }
             }
-        case .Invite(let remoteUser):
+        case .Invite(let remoteUser, false):
             presence.joinChat(remoteUser, completion: { response in
                 if let result = response.value {
-                    self.buddyList.clearInvite(remoteUser.identifier)
                     self.sendMessage(Message.AcceptInvitation(identifier: remoteUser.identifier, sessionInfo: result.sessionInfo))
+                    self.buddyList.clearInvite(remoteUser.identifier)
                     self.presentSession(result.sessionInfo, token: result.token)
                 }
                 else {
                     self.handleError(response.error!)
                 }
             })
+        case .Invite(_, true):
+            break
         }
     }
 
@@ -170,6 +178,8 @@ extension PresenceViewController : OTSessionDelegate {
                 fatalError("Invitation accepted without token")
             }
             self.presentSession(sessionInfo, token: token)
+        case let .DeclineInvitation(identifier, _):
+            buddyList.cancelInvite(identifier)
         }
     }
 

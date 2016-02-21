@@ -11,8 +11,7 @@ import Foundation
 enum PresenceRow {
     case Empty(emptyDescription: String)
     case User(remoteUser: RemoteUser)
-    case Invite(remoteUser: RemoteUser)
-
+    case Invite(remoteUser: RemoteUser, initiated: Bool)
 }
 
 extension BuddyList {
@@ -36,7 +35,7 @@ extension BuddyList {
         }
         if hasInvitations && indexPath.section == 0 {
             let user = invitations[indexPath.row]
-            return .Invite(remoteUser: user)
+            return .Invite(remoteUser: user, initiated: user.invitationToken != nil)
         }
         else {
             let user = users[indexPath.row]

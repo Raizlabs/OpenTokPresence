@@ -78,6 +78,7 @@ struct BuddyList {
         guard let existingIndex = lookupByIdentifier(identifier) else { return }
         var user = users[existingIndex]
         user.invitationSessionId = nil
+        user.invitationToken = nil
         users[existingIndex] = user
     }
 }

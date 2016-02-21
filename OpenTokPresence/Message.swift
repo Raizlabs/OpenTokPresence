@@ -13,12 +13,14 @@ enum Message {
     private static let InvitationKey = "invitation"
     private static let CancelInvitationKey = "cancelInvitation"
     private static let AcceptInvitationKey = "acceptInvitation"
+    private static let DeclineInvitationKey = "declineInvitation"
     private static let Separator = "~"
 
     case Status(identifier: String, status: RemoteUser.Status)
     case Invitation(identifier: String, sessionInfo: SessionInfo)
     case CancelInvitation(identifier: String, sessionInfo: SessionInfo)
     case AcceptInvitation(identifier: String, sessionInfo: SessionInfo)
+    case DeclineInvitation(identifier: String, sessionInfo: SessionInfo)
 
     static func fromSignal(signalString: String, withString string: String, fromConnectionId connectionId: String?) -> Message? {
         let signalParts = signalString.componentsSeparatedByString(Separator)
@@ -43,8 +45,14 @@ enum Message {
             }
 
             return .AcceptInvitation(identifier:connectionId!, sessionInfo: sessionInfo)
+        case DeclineInvitationKey:
+            guard let sessionInfo = SessionInfo.fromString(string) else {
+                return nil
+            }
+
+            return .DeclineInvitation(identifier:connectionId!, sessionInfo: sessionInfo)
         default:
-            return nil
+            fatalError("Unknown type \(signalString)")
         }
     }
 
@@ -60,6 +68,8 @@ enum Message {
             return (Message.CancelInvitationKey, sessionInfo.toString())
         case let .AcceptInvitation(_, sessionInfo):
             return (Message.AcceptInvitationKey, sessionInfo.toString())
+        case let .DeclineInvitation(_, sessionInfo):
+            return (Message.DeclineInvitationKey, sessionInfo.toString())
         }
     }
 }
