@@ -19,7 +19,7 @@ class PresenceViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    let presence = PresenceService()
+    let presence = PresenceClient()
 
     var buddyList = BuddyList(users:[]) {
         didSet { tableView.reloadData() }
@@ -92,6 +92,10 @@ extension PresenceViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return buddyList.numberOfRowsInSection(section)
+    }
+
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return buddyList.headerForSection(section)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -185,13 +189,14 @@ extension PresenceViewController : OTSessionDelegate {
             buddyList.updateStatus(identifier, status: status)
         case let .Invitation(identifier, sessionInfo):
             buddyList.receivedInvite(identifier, invitationSessionInfo: sessionInfo)
-        case let .CancelInvitation(identifier, _):
-            buddyList.clearInvite(identifier)
         case let .AcceptInvitation(identifier, sessionInfo):
             guard let token = buddyList.tokenForInvitationSentTo(identifier) else {
                 fatalError("Invitation accepted without token")
             }
-            self.presentSession(sessionInfo, token: token)
+            presentSession(sessionInfo, token: token)
+            buddyList.clearInvite(identifier)
+        case let .CancelInvitation(identifier, _):
+            buddyList.clearInvite(identifier)
         case let .DeclineInvitation(identifier, _):
             buddyList.clearInvite(identifier)
         }

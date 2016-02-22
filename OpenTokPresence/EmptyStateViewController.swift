@@ -21,18 +21,34 @@ class EmptyStateViewController: UIViewController {
 
     override func loadView() {
         let stackView = UIStackView()
+        stackView.axis = .Vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        if case .Spinner = state.style {
+            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            spinner.startAnimating()
+            spinner.hidesWhenStopped = false
+            stackView.addArrangedSubview(spinner)
+        }
 
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFontOfSize(22.0)
         titleLabel.text = state.title
+        titleLabel.textAlignment = .Center
         stackView.addArrangedSubview(titleLabel)
 
         let messageLabel = UILabel()
         messageLabel.font = UIFont.systemFontOfSize(14.0)
         messageLabel.text = state.message
         messageLabel.textColor = UIColor.darkGrayColor()
+        messageLabel.textAlignment = .Center
         stackView.addArrangedSubview(messageLabel)
 
-        self.view = stackView
+        view = UIView()
+        view.addSubview(stackView)
+        NSLayoutConstraint.activateConstraints([
+            view.centerXAnchor.constraintEqualToAnchor(stackView.centerXAnchor),
+            view.widthAnchor.constraintEqualToAnchor(stackView.widthAnchor),
+            view.centerYAnchor.constraintEqualToAnchor(stackView.centerYAnchor)
+        ])
     }
 }

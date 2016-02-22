@@ -29,6 +29,15 @@ extension BuddyList {
         }
     }
 
+    func headerForSection(section: Int) -> String? {
+        if (hasInvitations && section == 0) || users.count == 0 {
+            return nil
+        }
+        else {
+            return "Buddies"
+        }
+    }
+
     func rowAtIndexPath(indexPath: NSIndexPath) -> PresenceRow {
         if users.count == 0 {
             return .Empty(emptyDescription: "No Buddies")

@@ -1,5 +1,5 @@
 //
-//  PresenceService.swift
+//  PresenceClient.swift
 //  OpenTokPresence
 //
 //  Created by Brian King on 2/18/16.
@@ -10,26 +10,13 @@ import Foundation
 import Alamofire
 
 
-class PresenceService {
+class PresenceClient {
     let manager = Alamofire.Manager()
-}
-
-// MARK: - Shared Types
-
-struct Error {
-    static let Domain = "com.raizlabs.presence"
-    enum Code: Int {
-        case InvalidResponseContent = -7001
-    }
-
-    static func errorWithCode(code: Code) -> NSError {
-        return NSError(domain: Domain, code: code.rawValue, userInfo: [:])
-    }
 }
 
 // MARK: - Presence
 
-extension PresenceService {
+extension PresenceClient {
 
     typealias SessionCompletion = (Alamofire.Result<SessionInfo, NSError>) -> Void
 
@@ -41,24 +28,20 @@ extension PresenceService {
                     completion(.Failure(response.result.error!))
                     return
                 }
-                guard
-                    let json = response.result.value as? Dictionary<String, AnyObject>,
-                    let apiKey = json[APIConstants.VideoSessionKeys.apiKey] as? String,
-                    let sessionId = json[APIConstants.VideoSessionKeys.sessionId] as? String
-                    else
-                {
+                guard let JSON = response.result.value as? Dictionary<String, String>, let sessionInfo = SessionInfo.fromJSON(JSON) else {
                     completion(.Failure(Error.errorWithCode(.InvalidResponseContent)))
                     return
                 }
-                completion(.Success(SessionInfo(sessionId: sessionId, apiKey: apiKey)))
+                completion(.Success(sessionInfo))
         }
     }
+    
 }
 
 
 // MARK: - Register User
 
-extension PresenceService {
+extension PresenceClient {
 
     typealias TokenCompletion = (Alamofire.Result<String, NSError>) -> Void
 
@@ -85,7 +68,7 @@ extension PresenceService {
 
 // MARK: - Chat
 
-extension PresenceService {
+extension PresenceClient {
 
     struct ChatResponse {
         let token: String

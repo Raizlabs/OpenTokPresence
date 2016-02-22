@@ -47,4 +47,10 @@ extension SessionState : EmptyState {
         }
     }
 
+    var style: EmptyStateStyle {
+        get {
+            return .Spinner
+        }
+    }
+
 }

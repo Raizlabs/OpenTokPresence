@@ -15,7 +15,7 @@
 		AB58A5D11C7648C800C20C34 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D01C7648C800C20C34 /* Message.swift */; };
 		AB58A5D31C7656EC00C20C34 /* PresenceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D21C7656EC00C20C34 /* PresenceRow.swift */; };
 		AB58A5D71C7660FE00C20C34 /* TableView+AutoDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D61C7660FE00C20C34 /* TableView+AutoDequeue.swift */; };
-		AB58A5D91C766B6500C20C34 /* PresenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D81C766B6500C20C34 /* PresenceService.swift */; };
+		AB58A5D91C766B6500C20C34 /* PresenceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5D81C766B6500C20C34 /* PresenceClient.swift */; };
 		AB58A5DB1C76C19B00C20C34 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB58A5DA1C76C19B00C20C34 /* EmptyState.swift */; };
 		AB67B2351C73A511009BAEE6 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B2341C73A511009BAEE6 /* SessionViewController.swift */; };
 		AB67B23B1C73A6E6009BAEE6 /* PresenceKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */; };
@@ -30,6 +30,7 @@
 		ABEDDF541C6A20EA0052F275 /* SubscriberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEDDF531C6A20EA0052F275 /* SubscriberViewController.swift */; };
 		ABF7E57E1C77D0700066E8EC /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E57D1C77D0700066E8EC /* JSONHelpers.swift */; };
 		ABF7E5821C79330B0066E8EC /* SessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E5811C79330B0066E8EC /* SessionInfo.swift */; };
+		ABF7E5841C7A91540066E8EC /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E5831C7A91540066E8EC /* Error.swift */; };
 		AC18A16A66155AA55F79949D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4470E8520568B86F75E534A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +45,7 @@
 		AB58A5D01C7648C800C20C34 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AB58A5D21C7656EC00C20C34 /* PresenceRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceRow.swift; sourceTree = "<group>"; };
 		AB58A5D61C7660FE00C20C34 /* TableView+AutoDequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableView+AutoDequeue.swift"; sourceTree = "<group>"; };
-		AB58A5D81C766B6500C20C34 /* PresenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceService.swift; sourceTree = "<group>"; };
+		AB58A5D81C766B6500C20C34 /* PresenceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceClient.swift; sourceTree = "<group>"; };
 		AB58A5DA1C76C19B00C20C34 /* EmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		AB67B2341C73A511009BAEE6 /* SessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceKit.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		ABEDDF531C6A20EA0052F275 /* SubscriberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberViewController.swift; sourceTree = "<group>"; };
 		ABF7E57D1C77D0700066E8EC /* JSONHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelpers.swift; sourceTree = "<group>"; };
 		ABF7E5811C79330B0066E8EC /* SessionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionInfo.swift; sourceTree = "<group>"; };
+		ABF7E5831C7A91540066E8EC /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		F4470E8520568B86F75E534A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -115,13 +117,14 @@
 		AB67B2391C73A6CB009BAEE6 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				AB58A5CC1C76294000C20C34 /* RemoteUser.swift */,
-				AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */,
 				AB67B23C1C73A74E009BAEE6 /* APIConstants.swift */,
 				AB67B23E1C73AC64009BAEE6 /* Manager+APIEndpoint.swift */,
-				AB58A5D81C766B6500C20C34 /* PresenceService.swift */,
+				AB67B23A1C73A6E6009BAEE6 /* PresenceKit.swift */,
+				AB58A5D81C766B6500C20C34 /* PresenceClient.swift */,
+				AB58A5CC1C76294000C20C34 /* RemoteUser.swift */,
 				ABF7E5811C79330B0066E8EC /* SessionInfo.swift */,
 				AB58A5D01C7648C800C20C34 /* Message.swift */,
+				ABF7E5831C7A91540066E8EC /* Error.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -335,7 +338,8 @@
 				AB67B23F1C73AC64009BAEE6 /* Manager+APIEndpoint.swift in Sources */,
 				AB58A5D31C7656EC00C20C34 /* PresenceRow.swift in Sources */,
 				AB58A5CB1C76281200C20C34 /* PresenceViewController.swift in Sources */,
-				AB58A5D91C766B6500C20C34 /* PresenceService.swift in Sources */,
+				ABF7E5841C7A91540066E8EC /* Error.swift in Sources */,
+				AB58A5D91C766B6500C20C34 /* PresenceClient.swift in Sources */,
 				AB67B2351C73A511009BAEE6 /* SessionViewController.swift in Sources */,
 				AB58A5DB1C76C19B00C20C34 /* EmptyState.swift in Sources */,
 				AB58A5C61C75513800C20C34 /* HangoutView.swift in Sources */,

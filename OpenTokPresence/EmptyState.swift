@@ -8,7 +8,13 @@
 
 import Foundation
 
+enum EmptyStateStyle {
+    case Spinner
+    case Image(image: UIImage)
+}
+
 protocol EmptyState {
     var title: String? { get }
     var message: String? { get }
+    var style: EmptyStateStyle { get }
 }

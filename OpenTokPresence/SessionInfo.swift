@@ -13,14 +13,21 @@ struct SessionInfo {
     let apiKey: String
 
     static func fromString(string: String) -> SessionInfo? {
+        guard let JSON: Dictionary<String, String> = string.toJSON() else {
+            return nil
+        }
+        return SessionInfo.fromJSON(JSON)
+    }
+
+    static func fromJSON(JSON: Dictionary<String, String>) -> SessionInfo? {
         guard
-            let JSON: Dictionary<String, String> = string.toJSON(),
             let sessionId = JSON[APIConstants.SessionKeys.sessionId],
             let apiKey = JSON[APIConstants.SessionKeys.apiKey] else {
                 return nil
         }
         return SessionInfo(sessionId: sessionId, apiKey: apiKey)
     }
+
 
     func toString() -> String {
         return [

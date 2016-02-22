@@ -24,32 +24,24 @@ enum Message {
 
     static func fromSignal(signalString: String, withString string: String, fromConnectionId connectionId: String?) -> Message? {
         let signalParts = signalString.componentsSeparatedByString(Separator)
+        let signalName = signalParts.last!
 
-        switch signalParts.last! {
-        case StatusKey:
+        // Status messages are the only message with out session info
+        guard signalName != StatusKey else {
             return .Status(identifier:signalParts[0], status: RemoteUser.Status(rawValue: string)!)
+        }
+        guard let sessionInfo = SessionInfo.fromString(string) else {
+            return nil
+        }
+
+        switch signalName {
         case InvitationKey:
-            guard let sessionInfo = SessionInfo.fromString(string) else {
-                return nil
-            }
             return .Invitation(identifier:connectionId!, sessionInfo: sessionInfo)
         case CancelInvitationKey:
-            guard let sessionInfo = SessionInfo.fromString(string) else {
-                return nil
-            }
-
             return .CancelInvitation(identifier:connectionId!, sessionInfo: sessionInfo)
         case AcceptInvitationKey:
-            guard let sessionInfo = SessionInfo.fromString(string) else {
-                return nil
-            }
-
             return .AcceptInvitation(identifier:connectionId!, sessionInfo: sessionInfo)
         case DeclineInvitationKey:
-            guard let sessionInfo = SessionInfo.fromString(string) else {
-                return nil
-            }
-
             return .DeclineInvitation(identifier:connectionId!, sessionInfo: sessionInfo)
         default:
             fatalError("Unknown type \(signalString)")
