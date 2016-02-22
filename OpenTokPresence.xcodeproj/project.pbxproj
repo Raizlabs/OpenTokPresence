@@ -31,6 +31,8 @@
 		ABF7E57E1C77D0700066E8EC /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E57D1C77D0700066E8EC /* JSONHelpers.swift */; };
 		ABF7E5821C79330B0066E8EC /* SessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E5811C79330B0066E8EC /* SessionInfo.swift */; };
 		ABF7E5841C7A91540066E8EC /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E5831C7A91540066E8EC /* Error.swift */; };
+		ABF7E5861C7B92E70066E8EC /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E5851C7B92E70066E8EC /* VideoView.swift */; };
+		ABF7E5881C7BA39F0066E8EC /* VideoOverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF7E5871C7BA39F0066E8EC /* VideoOverlayButton.swift */; };
 		AC18A16A66155AA55F79949D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4470E8520568B86F75E534A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		ABF7E57D1C77D0700066E8EC /* JSONHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelpers.swift; sourceTree = "<group>"; };
 		ABF7E5811C79330B0066E8EC /* SessionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionInfo.swift; sourceTree = "<group>"; };
 		ABF7E5831C7A91540066E8EC /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		ABF7E5851C7B92E70066E8EC /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		ABF7E5871C7BA39F0066E8EC /* VideoOverlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoOverlayButton.swift; sourceTree = "<group>"; };
 		F4470E8520568B86F75E534A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,8 @@
 				AB58A5C51C75513800C20C34 /* HangoutView.swift */,
 				AB58A5C31C75419500C20C34 /* HangoutViewController.swift */,
 				AB58A5D61C7660FE00C20C34 /* TableView+AutoDequeue.swift */,
+				ABF7E5871C7BA39F0066E8EC /* VideoOverlayButton.swift */,
+				ABF7E5851C7B92E70066E8EC /* VideoView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -324,12 +330,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF7E5881C7BA39F0066E8EC /* VideoOverlayButton.swift in Sources */,
 				AB67B23B1C73A6E6009BAEE6 /* PresenceKit.swift in Sources */,
 				AB58A5D71C7660FE00C20C34 /* TableView+AutoDequeue.swift in Sources */,
 				AB67B2461C73B484009BAEE6 /* EmptyStateViewController.swift in Sources */,
 				ABEDDF4D1C6961E30052F275 /* PublisherViewController.swift in Sources */,
 				ABEDDF351C6952900052F275 /* AppDelegate.swift in Sources */,
 				AB67B2431C73B3A1009BAEE6 /* SessionState.swift in Sources */,
+				ABF7E5861C7B92E70066E8EC /* VideoView.swift in Sources */,
 				AB58A5CD1C76294000C20C34 /* RemoteUser.swift in Sources */,
 				AB58A5CF1C76489400C20C34 /* BuddyList.swift in Sources */,
 				AB67B23D1C73A74E009BAEE6 /* APIConstants.swift in Sources */,

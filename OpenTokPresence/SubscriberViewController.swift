@@ -9,13 +9,23 @@
 import Foundation
 
 class SubscriberViewController: UIViewController {
+
     let session: OTSession
-    var enabled = false
     var subscriber: OTSubscriber?
-    var stream: OTStream?
-    var error: OTError?
+    var error: OTError? {
+        didSet {
+            if let error = error {
+                fatalError("Unsupported Error \(error)")
+            }
+        }
+    }
 
     var audioLevel: Float = 0
+
+    lazy var videoView: VideoView = {
+        let view = VideoView()
+        return view
+    }()
 
     init(session: OTSession) {
         self.session = session
@@ -26,16 +36,40 @@ class SubscriberViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func loadView() {
+        self.view = videoView
+        videoView.muteAudioButton.addTarget(self, action: "muteAudioPressed:", forControlEvents: [.TouchUpInside])
+        videoView.muteVideoButton.addTarget(self, action: "muteVideoPressed:", forControlEvents: [.TouchUpInside])
+    }
+
+    func muteAudioPressed(sender: UIButton) {
+        guard let subscriber = subscriber else {return}
+        sender.selected = !sender.selected
+        subscriber.subscribeToAudio = !subscriber.subscribeToAudio
+    }
+
+    func muteVideoPressed(sender: UIButton) {
+        guard let subscriber = subscriber else {return}
+        sender.selected = !sender.selected
+        subscriber.subscribeToVideo = !subscriber.subscribeToVideo
+    }
+
     func subscribe(stream: OTStream) {
-        self.stream = stream
         subscriber = OTSubscriber(stream: stream, delegate: self)
         subscriber?.viewScaleBehavior = .Fit
         session.subscribe(subscriber, error: &error)
     }
 
     func unsubscribe(stream: OTStream) {
-        self.stream = nil
         session.unsubscribe(subscriber, error: &error)
+    }
+
+}
+
+extension SubscriberViewController: HangoutViewControllerLifecycle {
+
+    func willChangeHangoutPosition(position: HangoutPosition) {
+        videoView.buttonStack.hidden = (position == .Participant)
     }
 
 }
@@ -47,26 +81,18 @@ extension SubscriberViewController: OTSubscriberDelegate, OTSubscriberKitAudioLe
 
     func subscriberDidConnectToStream(subscriberKit: OTSubscriberKit) {
         if let subscriber = subscriber, let subscriberView = subscriber.view {
-            subscriberView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(subscriberView)
-            subscriberView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-            subscriberView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
-            subscriberView.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
-            subscriberView.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
+            videoView.contentView = subscriberView
         }
     }
 
     func subscriberVideoEnabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
-        enabled = true
     }
 
     func subscriberVideoDisabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
-        enabled = false
     }
 
     func subscriber(subscriber: OTSubscriberKit, didFailWithError error : OTError) {
         print("subscriber \(subscriber) didFailWithError \(error)")
-        self.enabled = false
         self.error = error
     }
 

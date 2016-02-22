@@ -8,6 +8,17 @@
 
 import UIKit
 
+@objc
+enum HangoutPosition: Int {
+    case FullSize
+    case Participant
+}
+
+@objc
+protocol HangoutViewControllerLifecycle {
+    optional func willChangeHangoutPosition(position: HangoutPosition)
+}
+
 class HangoutViewController: UIViewController {
     var focusedViewController: UIViewController?
 
@@ -25,6 +36,7 @@ class HangoutViewController: UIViewController {
         didSet {
             let added = participantViewControllers.filter({$0.parentViewController == nil})
             let removed = oldValue.filter({!participantViewControllers.contains($0)})
+            notifyHangoutLifecycle(oldValue)
 
             added.forEach(addChildViewController)
             removed.forEach { $0.willMoveToParentViewController(nil) }
@@ -35,6 +47,23 @@ class HangoutViewController: UIViewController {
 
             added.forEach { $0.didMoveToParentViewController(self) }
             removed.forEach { $0.removeFromParentViewController() }
+        }
+    }
+
+    private func notifyHangoutLifecycle(oldParticipants: [UIViewController]) {
+        let mainVC = participantViewControllers.first
+        let oldMainVC = oldParticipants.first
+        let participantVCs = participantViewControllers[1..<participantViewControllers.count]
+        let oldParticipantVCs = oldParticipants.count > 0 ? oldParticipants[1..<oldParticipants.count] : []
+
+        if let fullSizeVC = mainVC as? HangoutViewControllerLifecycle where mainVC != oldMainVC {
+            fullSizeVC.willChangeHangoutPosition?(.FullSize)
+        }
+
+        for vc in participantVCs {
+            if let participantViewController = vc as? HangoutViewControllerLifecycle where !oldParticipantVCs.contains(vc) {
+                participantViewController.willChangeHangoutPosition?(.Participant)
+            }
         }
     }
 

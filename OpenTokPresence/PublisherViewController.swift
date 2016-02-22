@@ -9,6 +9,7 @@
 import Foundation
 
 class PublisherViewController: UIViewController {
+
     let session: OTSession
     var publisher: OTPublisher?
     var error: OTError?
@@ -17,6 +18,11 @@ class PublisherViewController: UIViewController {
 
     var audioLevel: Float = 0
 
+    lazy var videoView: VideoView = {
+        let view = VideoView()
+        return view
+    }()
+
     init(session: OTSession) {
         self.session = session
         super.init(nibName: nil, bundle: nil)
@@ -24,6 +30,24 @@ class PublisherViewController: UIViewController {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func loadView() {
+        self.view = videoView
+        videoView.muteAudioButton.addTarget(self, action: "muteAudioPressed:", forControlEvents: [.TouchUpInside])
+        videoView.muteVideoButton.addTarget(self, action: "muteVideoPressed:", forControlEvents: [.TouchUpInside])
+    }
+
+    func muteAudioPressed(sender: UIButton) {
+        guard let publisher = publisher else {return}
+        sender.selected = !sender.selected
+        publisher.publishAudio = !publisher.publishAudio
+    }
+
+    func muteVideoPressed(sender: UIButton) {
+        guard let publisher = publisher else {return}
+        sender.selected = !sender.selected
+        publisher.publishVideo = !publisher.publishVideo
     }
 
     func publish() {
@@ -39,6 +63,14 @@ class PublisherViewController: UIViewController {
     }
 }
 
+extension PublisherViewController: HangoutViewControllerLifecycle {
+
+    func willChangeHangoutPosition(position: HangoutPosition) {
+        videoView.buttonStack.hidden = (position == .Participant)
+    }
+    
+}
+
 extension PublisherViewController: OTPublisherDelegate, OTPublisherKitAudioLevelDelegate {
 
     func publisher(publisher: OTPublisherKit!, didFailWithError error: OTError!) {
@@ -52,12 +84,7 @@ extension PublisherViewController: OTPublisherDelegate, OTPublisherKitAudioLevel
 
     func publisher(publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
         if let publisher = self.publisher, let publisherView = publisher.view {
-            publisherView.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(publisherView)
-            publisherView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-            publisherView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
-            publisherView.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
-            publisherView.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
+            videoView.contentView = publisherView
         }
     }
 
